@@ -7,8 +7,8 @@ Android Clock, Employee Timekeeping, and Job Tracking Application
 
 Developed by Maclean Of Duart Enterprises Corp
 
-Version: 1.0.6
-Version Code: 7
+Version: 1.0.7
+Version Code: 8
 Platform: Android
 License: GNU General Public License v3.0 (GPL-3.0)
 
@@ -704,7 +704,7 @@ A native Android application combining customizable clock functions, alarms, tim
 
 Designed to provide practical, locally managed timekeeping without requiring a proprietary cloud account.
 
-Version: 1.0.6
+Version: 1.0.7
 Platform: Android
 Development: Native Kotlin
 Data Architecture: Local-first
