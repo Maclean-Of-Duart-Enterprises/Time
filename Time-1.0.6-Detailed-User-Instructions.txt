@@ -1,0 +1,178 @@
+TIME 1.0.6 — DETAILED USER INSTRUCTIONS
+Maclean Of Duart Enterprises Corp
+Android package: com.macleanofduartenterprises.time
+
+ABOUT THIS GUIDE
+This guide is based on the README.md and EMPLOYEE-SETUP.md included in the supplied Time 1.0.6 source archive. Menu labels reflect those documents. Features may depend on Android permissions and on the version of MODE Handyman receiving exports.
+
+1. FIRST-TIME SETUP
+1. Install and open Time on an Android 8.0 or newer device.
+2. Open Profiles > Workers and create the worker who will use the device, or import a worker CSV.
+3. Open Profiles > Jobs and add the jobs the worker will clock into, or import a job CSV.
+4. If the device will be used by employees, open Settings (gear, upper-right) > Admin panel. Enable Admin controls and set a 6–12 digit PIN. Keep a secure record of the PIN.
+5. Return to Timecard, choose the worker and job, and record a test shift.
+6. In Settings, select automatic/light/dark theme and clock display preferences.
+7. Allow notifications and, if Android requests it, exact-alarm access for dependable alarm and timer alerts.
+
+2. WORKER PROFILES
+Open Profiles > Workers.
+- Create a worker with a name. Optional identifiers include employee_id and business_profile_id; using the corresponding MODE Handyman identifiers improves matching.
+- Add optional custom fields, such as contact information.
+- Edit worker information when authorized.
+- Select a worker on Timecard to associate subsequent shifts with that person.
+- Import or export worker profiles using CSV.
+- To delete a worker, turn off Admin controls or unlock the Admin panel and use Delete employee. Confirm carefully: deletion permanently removes the worker's shifts, breaks and attachments.
+- If an imported MODE worker duplicates a manually created worker, reimport the MODE employee setup JSON to consolidate compatible records. If both records have running shifts, clock out one first.
+
+3. JOB PROFILES AND NAVIGATION
+Open Profiles > Jobs.
+- Add a job name, optional job code, and job-site address.
+- Add custom fields such as client or project lead.
+- Configure a job-specific pay multiplier if needed; Admin authorization is required when controls are enabled.
+- Select the job on Timecard before clocking in. A shift without a job is also supported.
+- Use a saved address to navigate using OsmAnd, Google Maps, OpenStreetMap or another compatible mapping application. OsmAnd street-address navigation can require an online OpenStreetMap lookup.
+- Archive a job when it should no longer be available for new selection; restore it if needed.
+- Deleting or archiving a job does not erase completed shift history: existing timecards retain the job name, notes and multiplier captured at clock-in.
+
+4. CLOCK IN, BREAKS, AND CLOCK OUT
+1. Open Timecard.
+2. Select the correct worker.
+3. Select the job (or leave the shift unassigned).
+4. Tap Clock in. The app records the shift start and the selected job information.
+5. To take an unpaid break, tap Start break. Tap End break when work resumes.
+6. Add shift notes when appropriate.
+7. At the end of work, tap Clock out.
+8. Review the completed shift and paid-time total.
+Only one shift per worker can remain open. Running shifts and breaks persist across ordinary app restarts. Unpaid breaks are excluded from paid time.
+
+5. MANUAL SHIFTS AND CORRECTIONS
+- On Timecard, use Add manual shift to record a missed punch or a shift not recorded live.
+- Use Edit shift on a completed entry to correct the date, clock-in time, clock-out time, unpaid breaks or notes.
+- For an overnight shift, use the following calendar day as the clock-out date.
+- Saving corrections recalculates totals and affects subsequent CSV exports.
+- With Admin controls enabled, these changes require the PIN.
+- Delete shift removes one completed shift and its breaks.
+- Delete timecard removes all completed shifts for the selected worker in the displayed From–Through period, including shifts not visible on the current page. Review the confirmation carefully.
+- Deleting a timecard does not delete active shifts, other workers' records, or records outside the chosen period. Previously exported CSV files are unaffected.
+
+6. REVIEWING PAY PERIODS
+1. Open Timecard.
+2. Select the worker.
+3. Set From and Through dates; both dates are included.
+4. Review the completed shifts and total paid time.
+5. Check break durations, job assignments and notes before exporting.
+Ordinary overnight shifts are attributed to their start date. Exports split shifts longer than 24 hours and preserve exact paid seconds, including during daylight-saving changes.
+
+7. EXPORTING A TIMECARD TO MODE HANDYMAN
+1. On Timecard, select the worker and From–Through date range.
+2. Tap Export timecard CSV.
+3. Choose a location and filename in Android's document picker and save the UTF-8 CSV.
+4. Transfer the file to the device running MODE Handyman, if different.
+5. In MODE Handyman, open People and materials > Employee and Subcontractor.
+6. Select the matching employee and choose Import timecard CSV.
+7. Review the imported draft timecard, verify hours, job allocations, rates and deductions, and follow MODE's payroll approval workflow.
+The Time CSV contains employee identifiers, dates, start/end times, unpaid break minutes, exact paid seconds, multipliers, notes and pay-period dates. Job name and code appear in notes. Time does not replace MODE Handyman's payroll calculations or paystub processing.
+
+8. WORKER AND JOB CSV IMPORT/EXPORT
+Workers: use a CSV with employee_name; optionally employee_id and business_profile_id. Additional column names become custom fields.
+Jobs: use job_name; optionally job_code and multiplier. Additional columns become custom fields.
+- The importer supports commas, semicolons or tabs as delimiters and quoted values containing delimiters or newlines.
+- Worker matching uses employee ID within a business, or normalized name when ID is absent.
+- Job matching uses job code, or job name if code is absent.
+- Supplied fields update matching records; omitted custom fields remain unchanged.
+- A rejected import batch leaves existing records unchanged.
+- Job CSV export includes active jobs.
+Use the example CSV files supplied in the source project's examples directory as templates.
+
+9. IMPORTING EMPLOYEE SETUP JSON FROM MODE HANDYMAN
+On MODE Handyman:
+1. Open People and materials > Employee and Subcontractor.
+2. Select the employee and open Employee setup / export for Time.
+3. Choose the jobs to assign, including their job codes and job-site addresses where applicable.
+4. Configure available job settings and export the employee setup JSON.
+5. Transfer the JSON to the Time device.
+On Time:
+6. Open Settings > Import employee setup JSON.
+7. Select the JSON using Android's document picker.
+8. Authorize the import if Admin controls are enabled (see Section 10).
+9. For a valid single-worker setup, Time applies the information and selects the imported worker on Timecard.
+10. Open Profiles > Workers and Profiles > Jobs to check the imported details.
+Reimporting updated setup JSON can update matching employees and jobs rather than creating duplicates. Matching is based on MODE IDs and normalized names, and jobs match by code or name. Existing time records are preserved. Imports are validated as a whole; invalid imports are rejected without partial changes.
+The documented setup format is time.setup.v1. It supports settings, employees or a single worker, jobs, addresses, custom fields and Base64 attachments. Maximum file size: 16 MiB including attachments. Payroll rates, taxes and paystubs are managed in MODE Handyman, not calculated by Time.
+
+10. ADMIN PANEL AND SECURE IMPORT AUTHORIZATION
+Open Settings > Admin panel.
+- Enable Admin controls and configure a 6–12 digit PIN.
+- With controls enabled, employee/job changes, imports, job multipliers, archiving, timecard corrections and deletions are protected.
+- Leaving Admin or backgrounding the app locks the panel. Returning from a document picker may require reauthorization.
+- To disable controls, unlock Admin, turn the switch off and confirm.
+- Clearing the app's storage or uninstalling it removes locally stored records and the PIN.
+There are three ways to authorize an employee setup import:
+A. Enter the receiving device's PIN when prompted.
+B. Use an authorized setup JSON containing the top-level admin_password string. On the administrator device, Settings > Admin panel > Add admin PIN to setup JSON can create such a copy. WARNING: anyone who can read this JSON can read and reuse the PIN. Transfer and store it securely.
+C. Use a trusted digitally signed setup file without sharing the PIN:
+   1. On the administrator device, Settings > Admin panel > Show this device's sender key; copy the public key.
+   2. On the employee device, Settings > Admin panel > Trust setup sender; paste and verify the key.
+   3. On the administrator device, Settings > Admin panel > Sign employee setup file; select the JSON and save the signed copy.
+   4. Send the signed file to the employee and import it through Settings > Import employee setup JSON.
+   5. Time verifies the trusted sender and file integrity. A modified or untrusted file fails. Revoke a sender by removing its trusted key in Admin.
+The signed format is time.signed.v1 using ECDSA P-256/SHA-256. Each receiving device trusts one sender at a time.
+
+11. CLOCK DISPLAY AND APPEARANCE
+Open the gear icon in the upper-right corner for Settings.
+- Select Automatic, Light or Dark theme.
+- Select Analog, Digital or Both for the clock face.
+- Choose system/12-hour/24-hour display as available.
+- Turn seconds on or off.
+- Open Clock to view local time and search world time zones.
+The local clock follows the device time zone.
+
+12. ALARMS
+1. Open Clock and its alarm controls.
+2. Create an alarm and choose its time and optional label.
+3. Select weekdays for a repeating alarm; leave all days off for a one-time alarm.
+4. Select Sound only, Vibration only, or Sound and vibration.
+5. Under Ringtone, choose the built-in Time chime, an installed Android tone, or an audio file. Imported audio is copied into app storage.
+6. Under Vibration, choose a preset or import a text/CSV pattern.
+7. Use Preview alert to test the configuration, then save.
+8. Use the switch beside an alarm to enable or disable it without deleting the configuration.
+A one-time alarm switches off after it rings; re-enable it to use it again. Vibration patterns alternate pause and vibration durations in milliseconds, for example 0,300,200,600. Alarm sound uses Android's alarm volume.
+
+13. COUNTDOWN TIMER
+1. Open Clock > Timer.
+2. Enter a countdown duration.
+3. Start the timer.
+4. Use Pause and Resume when needed, or Reset to begin again.
+5. Dismiss the completion notification when it finishes.
+Active timers and scheduled alarms are restored after an ordinary device restart and unlock, subject to Android scheduling permissions and device behavior.
+
+14. NOTIFICATIONS AND ANDROID PERMISSIONS
+- On Android 13+, allow notifications when prompted so alarm/timer alerts and dismissal actions can appear.
+- If notifications were denied, use Enable alarm notifications or Android app/channel notification settings.
+- If prompted for exact-alarm access, follow the settings button on the Alarms or Timer screen.
+- For a street-address lookup in OsmAnd, internet access may be necessary.
+- Time does not require an account or broad storage permission; use Android's document picker to import/export files.
+
+15. DATA SAFETY AND TROUBLESHOOTING
+- Export timecards regularly and keep independent copies.
+- Before deleting a worker, export needed timecards: worker deletion removes associated shifts, breaks and attachments.
+- Before deleting a timecard, verify the worker and selected inclusive date range.
+- If an import duplicates a worker, check IDs and business association, then reimport the MODE setup JSON to consolidate compatible records.
+- If duplicate profiles both have running shifts, clock out one before retrying consolidation.
+- If a JSON import fails, check UTF-8 encoding, the 16 MiB size limit, required names, job codes, authorization, and signed-file integrity.
+- If an alarm is silent, check its enable switch, chosen sound/vibration mode, alarm volume, notifications, and exact-alarm access.
+- If navigation fails, confirm the saved job-site address and whether online address lookup is needed.
+- Do not uninstall or clear app storage unless you have saved the records you need: local data and the Admin PIN will be lost.
+
+16. IMPORTANT LIMITATIONS
+- Time records worked hours; MODE Handyman performs payroll/paystub management.
+- Job pay multipliers are stored with shifts for downstream reporting; they are not a substitute for payroll verification.
+- Imported employee setup files may contain readable personal information and attachments; protect them.
+- PIN-authorized JSON contains the readable administrator PIN; signed JSON is safer for distribution.
+- The source documentation does not confirm a configurable default opening page in version 1.0.6, so this guide does not describe that as an available setting.
+
+DEVELOPER AND LICENSE
+Maclean Of Duart Enterprises Corp
+https://macleanofduartenterprises.com
+Time 1.0.6 — GPL-3.0; incorporates components derived from Simple Time Tracker 1.61.
+Source references: Time/README.md and Time/EMPLOYEE-SETUP.md from the supplied source archive.
