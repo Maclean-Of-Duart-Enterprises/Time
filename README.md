@@ -506,6 +506,7 @@ Available settings include:
 - Administrative controls.
 - Employee setup JSON import.
 - Authorized setup file management.
+- Default screen display - Clock, Timecard, Profiles, Last Opened.
 
 The application also includes configurable local and world clock displays.
 
@@ -603,6 +604,7 @@ The MODE-specific implementation provides:
 - Countdown timer.
 - CSV export and import.
 - Local signed-file authorization.
+- Default opening screen.
 
 Original upstream project:
 
@@ -610,9 +612,9 @@ https://github.com/Razeeman/Android-SimpleTimeTracker
 
 The included GPLv3 license applies to this derivative application.
 
-What's New in Version 1.0.6
+What's New in Version 1.0.7
 
-Version 1.0.6 builds on the employee, timecard, clock, and administrative functionality introduced in previous releases.
+Version 1.0.7 builds on the employee, timecard, clock, and administrative functionality introduced in previous releases and added Default opening screen settings and management under settings. 
 
 The current source includes:
 
